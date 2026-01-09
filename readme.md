@@ -58,7 +58,7 @@ disT = undi("tri", leftPos=10, centerPos=11,rightPos=13) #note its asymmetric
 ```
 
 
-![The three distributions](examples/plots/testUndis_basic Distributions.png)
+![The three distributions](examples/plots/testUndis_basic_Distributions.png)
 
 ![Closeup of Tri](examples/plots/testUndis_tri_closeup.png)
 

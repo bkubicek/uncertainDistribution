@@ -33,7 +33,7 @@ if True:
     plt.plot(disT.centers, disT.weights, label="disT")
     plt.grid()
     plt.legend()
-    plt.savefig(plotDir+"testUndis_basic Distributions.png")
+    plt.savefig(plotDir+"testUndis_basic_Distributions.png")
 
 
 # now lets get the sum of two distributions
