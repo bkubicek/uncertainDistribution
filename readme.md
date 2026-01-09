@@ -59,6 +59,7 @@ disT = undi("tri", leftPos=10, centerPos=11,rightPos=13) #note its asymmetric
 
 
 ![The three distributions](examples/plots/testUndis_basic Distributions.png)
+
 ![Closeup of Tri](examples/plots/testUndis_tri_closeup.png)
 
 Now lets get the sum of two distributions.
@@ -70,11 +71,8 @@ This is not an arithmetic plus but a complex algorithm
 sumExample1 = disR + disT
 sumExample2 = disR + disN
 
-testUndis_sum.png
-
 # we can shift a distribution also by adding a float
 sumSkalar = disR+10
-
 
 # we can multiply distributions
 mulRT = disR*disT
@@ -86,9 +84,10 @@ divTSkal = disT/3
 invT = 1/disT
 ```
 
-![](examples/plots/testUndis_skalarAddition.png)
-![](examples/plots/testUndis_mul.png)
-![](examples/plots/testUndis_div.png)
+![Sum](examples/plots/testUndis_sum.png)
+![Sum skalar](examples/plots/testUndis_skalarAddition.png)
+![Mul](examples/plots/testUndis_mul.png)
+![Div](examples/plots/testUndis_div.png)
     
     
 
