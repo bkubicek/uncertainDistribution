@@ -10,23 +10,23 @@ to get the estimated distribution for the likely total length of the combined st
     
 ## Features:
 One can define multiple distributions:
-    Normal Distribution
-    Rectangular Distribution
-    Triangular Distribution (possibly assymetric)
+* Normal Distribution
+* Rectangular Distribution
+* Triangular Distribution (possibly assymetric)
 
 one can:
-    add
-    multiply
-    divide (if the second distribution is not zero-crossing)
+* add
+* multiply
+* divide (if the second distribution is not zero-crossing)
 
 this allows in combination to perform estimations of the probablility 
 distribution of complex systems: 
-    e.g. to proofe the measurement accuracy of an accredited measurement
-        observable = bias_error + sensitivity*set_point/current/length
-        where each quantity on the right hand side has individual precission intervals/types
-        the bias_error might be normal distributed, while
-        the other things are individually rectangular distributed
-            
+    
+e.g. to proofe the measurement accuracy of an accredited measurement
+* observable = bias_error + sensitivity*set_point/current/length
+where each quantity on the right hand side has individual precission intervals/types
+the bias_error might be normal distributed, while the other things are individually rectangular distributed
+        
 ## Technicals
 One could do all that using monte carlo sampling and be done.
 However it would be slow.
