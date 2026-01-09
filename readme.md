@@ -24,6 +24,7 @@ distribution of complex systems:
     
 e.g. to proofe the measurement accuracy of an accredited measurement
 * observable = bias_error + sensitivity*set_point/current/length
+
 where each quantity on the right hand side has individual precission intervals/types
 the bias_error might be normal distributed, while the other things are individually rectangular distributed
         
@@ -41,7 +42,7 @@ For a normal distribution one has to choose how much of the tails are resolved
 when adding/multiplying/dividing two distributions, all combination of centers are looked at
 and the combined likelyhood is defining the new resulting weights.
 
-The Class uses operator overloading, so that + * / with a distributino/scalar are possible
+The Class uses operator overloading, so that + * / with a distribution/scalar are possible
 
 Core functionally is written in c++ for optimization and automatically wrapped to python from "bkUncDist.hpp" using cppyy "https://cppyy.readthedocs.io/en/latest/"
 
@@ -57,12 +58,12 @@ disT = undi("tri", leftPos=10, centerPos=11,rightPos=13) #note its asymmetric
 ```
 
 
-![](examples/plots/estUndis_tri_closeup.png)
+![The three distributions](examples/plots/testUndis_basic Distributions.png)
+![Closeup of Tri](examples/plots/testUndis_tri_closeup.png)
 
-![](examples/plots/testUndis_basic Distributions.png)
-now lets get the sum of two distributions
-this is the likelyhood of the sum of random picks from both distributions
-this is not an arithmetic plus but a complex algorithm 
+Now lets get the sum of two distributions.
+This is the likelyhood of the sum of random picks from both distributions.
+This is not an arithmetic plus but a complex algorithm 
 
 
 ```
