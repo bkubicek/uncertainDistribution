@@ -82,7 +82,7 @@ print("General Bias: %.5f A  = %.4f%% of nominal"%(mesMean-actualCurrent, mesMea
 and now lets plot how the distribution looks
 
 """
-plt.figure(figsize=(11,10),dpi=200)
+plt.figure(figsize=(11,10),dpi=150)
 
 ymax =  max(I.weights)
 plt.plot(I.centers,I.weights, label="I measured Distribution")

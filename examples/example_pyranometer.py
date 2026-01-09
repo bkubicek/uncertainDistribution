@@ -13,9 +13,13 @@ Created on Thu Jan  8 15:31:01 2026
 
 
 import matplotlib.pyplot as plt
-
-from uncertainDistribution import unDist as undi
 import numpy as np
+
+import sys
+sys.path.append('../') #the uncertainDistribution lib is in the folder above
+from uncertainDistribution import unDist as undi
+
+plotDir = "./plots/"
 
 zeroOffsetBPlusMinus = 3
 sensitivityPercent = 1.5/3
@@ -100,4 +104,4 @@ plt.legend()
 plt.grid()
 plt.xlim(800,1000)
 plt.xlabel("G [W/m^2]")
-plt.savefig("example_pyranometer.png")
+plt.savefig(plotDir+"example_pyranometer.png")

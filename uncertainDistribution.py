@@ -68,6 +68,7 @@ License: LGPL-3.0-or-later
 """
 import numpy as np
 import cppyy
+import copy
 
 try:
     cppyy.add_include_path('./include')
@@ -218,9 +219,17 @@ class unDist:
         return self.__add__(x)
     
     def __sub__(self, x):
-        # operater that is called if python sees code "x-unDist" 
-        # - is assumed commutative
+        # operater that is called if python sees code "unDist-x" 
         return self.__add__(-x)
+    
+    def __rsub__(self, x):
+        # operater that is called if python sees code "x-unDist" 
+        print("rsub")
+        nd = unDist()
+        nd.centers = -copy.copy(self.centers)
+        nd.weights = copy.copy(self.weights)
+        
+        return nd.__add__(-x)
     
     
                 
