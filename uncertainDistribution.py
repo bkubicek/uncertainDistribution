@@ -62,7 +62,7 @@ Usage:
 core functionally is written in c++ for optimization
 and automatically wrapped to python from "bkUncDist.hpp" using cppyy "https://cppyy.readthedocs.io/en/latest/"
 
-
+License: LGPL-3.0-or-later
 
 @author: Bkubicek
 """
