@@ -95,7 +95,12 @@ invT = 1/disT
 The library depends on cppyy, numpy, matplotlib
 ```
 pip install cppyy numpy matplotlib
+
 ```
 
+## Acknowledgement
+The code was initially written by Bernhard Kubice while working for AIT, Austrian Institute of Technology.
+It was initially developed for estimating pyranometer accuracy in the European Research Project Solid-PV
+https://www.solid-pv.ptb.de/home 
 
 
