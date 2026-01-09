@@ -64,15 +64,15 @@ class unDist:
             self.sampleTri()
             
     def sampleNormal(self):
-        centers, weights= cppyy.gbl.getNormalW(self.mean,self.stdDev, self.maxSigma, self.samples)
+        centers, weights= cppyy.gbl.getNormal(self.mean,self.stdDev, self.maxSigma, self.samples)
         self.centers = np.array(centers)
         self.weights=np.array(weights)
     def sampleRect(self):
-        centers, weights= cppyy.gbl.getRectW(self.leftPos, self.rightPos, self.samples)
+        centers, weights= cppyy.gbl.getRect(self.leftPos, self.rightPos, self.samples)
         self.centers = np.array(centers)
         self.weights=np.array(weights)
     def sampleTri(self):
-        centers, weights= cppyy.gbl.getTriW(self.leftPos, self.centerPos, self.rightPos, self.samples)
+        centers, weights= cppyy.gbl.getTri(self.leftPos, self.centerPos, self.rightPos, self.samples)
         self.centers = np.array(centers)
         self.weights=np.array(weights)
     

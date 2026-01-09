@@ -9,14 +9,13 @@
 #include <cmath>
 #include <utility>
 
-constexpr double pi = 3.14159265358979323846;
+const double pi = 3.14159265358979323846;
 
-int testab(int a)
-{
-    return a+1;
-}
+typedef std::vector<double> VecD;
+typedef std::tuple< VecD, VecD> TupleVecD;
+typedef std::pair< double, double > PairDouble;
 
-void normalizeVec(std::vector<double> &v)
+inline void normalizeVec(VecD &v)
 {
     double wsum=0;
     for(unsigned i=0;i<v.size();i++)
@@ -28,33 +27,16 @@ void normalizeVec(std::vector<double> &v)
         v[i]*=1/wsum;
 }
 
-std::vector<double>  getNormal(double mean, double stddev, unsigned N)
-{
-    
-    std::random_device r;
-    std::default_random_engine e1(r());
-    //std::mt19937 e2(seed2);
-    
-    std::normal_distribution d{mean, stddev};
-    
-    std::vector<double> result;
-    result.resize(N);
-    
-    for(unsigned i=0;i<N;i++)
-        result[i]=d(e1);
-    
-    return result;
-}
 
-std::tuple< std::vector<double>, std::vector<double> >
-  getNormalW(double mean, double stddev, double sigmaMax, unsigned N)
+
+inline TupleVecD getNormal(double mean, double stddev, double sigmaMax, unsigned N)
 {    
     double leftVal= mean-sigmaMax;
     double rightVal= mean+sigmaMax;
     double delta = (rightVal-leftVal)/N;
-    std::vector<double> centers;
+    VecD centers;
     centers.resize(N);
-    std::vector<double> weights(N,0);
+    VecD weights(N,0);
     
     
     centers[0]=leftVal+delta/2;
@@ -70,13 +52,12 @@ std::tuple< std::vector<double>, std::vector<double> >
     return {centers, weights};
 }
 
-std::tuple< std::vector<double>, std::vector<double> >
-    getTriW(double leftVal, double centerVal, double rightVal, unsigned N)
+inline TupleVecD getTri(double leftVal, double centerVal, double rightVal, unsigned N)
 {
     double delta = (rightVal-leftVal)/N;
-    std::vector<double> centers;
+    VecD centers;
     centers.resize(N);
-    std::vector<double> weights(N,0);
+    VecD weights(N,0);
     
     double centerPos=(centerVal-leftVal)/delta;
     
@@ -101,31 +82,13 @@ std::tuple< std::vector<double>, std::vector<double> >
     
 }
 
-std::vector<double>  getRect(double leftVal, double rightVal, unsigned N)
-{
-    
-    std::random_device r;
-    std::default_random_engine e1(r());
-    //std::mt19937 e2(seed2);
-    
-    std::uniform_real_distribution d(leftVal, rightVal);
-    
-    std::vector<double> result;
-    result.resize(N);
-    
-    for(unsigned i=0;i<N;i++)
-        result[i]=d(e1);
-    
-    return result;
-}
 
-std::tuple< std::vector<double>, std::vector<double> >
-  getRectW(double leftVal, double rightVal, unsigned N)
+inline TupleVecD getRect(double leftVal, double rightVal, unsigned N)
 {    
     double delta = (rightVal-leftVal)/N;
-    std::vector<double> centers;
+    VecD centers;
     centers.resize(N+2);
-    std::vector<double> weights(N+2,1/double(N));
+    VecD weights(N+2,1/double(N));
     
     
     centers[0]=leftVal-delta/2;
@@ -138,15 +101,16 @@ std::tuple< std::vector<double>, std::vector<double> >
     return {centers, weights};
 }
 
-bool comparatorPair ( const std::pair<double,double> &l, const std::pair<double,double> &r)
+
+
+inline bool comparatorPair ( const PairDouble &l, const PairDouble &r)
    { return l.first < r.first; }
   
  
-std::tuple< std::vector<double>, std::vector<double> >
-    resampleDistribution(std::vector<double> centers, std::vector<double> weights, unsigned newN)
+inline TupleVecD resampleDistribution(const VecD &centers, const VecD &weights, unsigned newN)
 {
-    std::vector<double> newCenters;
-    std::vector<double> newWeights;
+    VecD newCenters;
+    VecD newWeights;
     newCenters.resize(newN);
     newWeights.resize(newN,0);
     
@@ -172,12 +136,13 @@ std::tuple< std::vector<double>, std::vector<double> >
     
     return {newCenters, newWeights};
 }
-std::tuple< std::vector<double>, std::vector<double> >
-    addDistributions(std::vector<double> centers1, std::vector<double> weights1, 
-                     std::vector<double> centers2, std::vector<double> weights2, unsigned newN)
+
+inline TupleVecD addDistributions(
+    const VecD &centers1, const VecD &weights1, 
+    const VecD &centers2, const VecD &weights2, unsigned newN)
 {
-    std::vector<double> resCenters;
-    std::vector<double> resWeights;
+    VecD resCenters;
+    VecD resWeights;
     resCenters.reserve( centers1.size()*centers2.size() );
     resWeights.reserve( centers1.size()*centers2.size() );
     for (unsigned i =0;i<centers1.size();i++)
@@ -200,12 +165,12 @@ std::tuple< std::vector<double>, std::vector<double> >
 }
 
 
-std::tuple< std::vector<double>, std::vector<double> >
-    multiplyDistributions(std::vector<double> centers1, std::vector<double> weights1, 
-                          std::vector<double> centers2, std::vector<double> weights2, unsigned newN)
+inline TupleVecD multiplyDistributions(
+     const VecD &centers1, const VecD &weights1, 
+     const VecD &centers2, const VecD &weights2, unsigned newN)
 {
-    std::vector<double> resCenters;
-    std::vector<double> resWeights;
+    VecD resCenters;
+    VecD resWeights;
     resCenters.reserve( centers1.size()*centers2.size() );
     resWeights.reserve( centers1.size()*centers2.size() );
     for (unsigned i =0;i<centers1.size();i++)
@@ -227,12 +192,12 @@ std::tuple< std::vector<double>, std::vector<double> >
 
 }
 
-std::tuple< std::vector<double>, std::vector<double> >
-    divideDistributions(std::vector<double> centers1, std::vector<double> weights1, 
-                          std::vector<double> centers2, std::vector<double> weights2, unsigned newN)
+inline TupleVecD divideDistributions(
+   const VecD &centers1, const VecD &weights1, 
+   const VecD &centers2, const VecD &weights2, unsigned newN)
 {
-    std::vector<double> resCenters;
-    std::vector<double> resWeights;
+    VecD resCenters;
+    VecD resWeights;
     resCenters.reserve( centers1.size()*centers2.size() );
     resWeights.reserve( centers1.size()*centers2.size() );
     for (unsigned i =0;i<centers1.size();i++)
@@ -249,9 +214,8 @@ std::tuple< std::vector<double>, std::vector<double> >
         }
     }
     normalizeVec(resWeights);
-    
-    return  resampleDistribution(resCenters,resWeights,newN);
 
+    return  resampleDistribution(resCenters,resWeights,newN);
 }
 
 
