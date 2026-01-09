@@ -3,12 +3,12 @@
  *
  * The distributions are given by two arrays, each beeing a std::vector.
  * The "centers" array is the center points of the intervals in the x-axis
- * The "weights" array the likelyhood of the distributino at the corresponding center point
+ * The "weights" array the likelyhood of the distribution at the corresponding center point
  * The weights sum up 1. This is different from "they integrate to 1". 
  * By having this nomenclature, the weights actually descripe the likelyhood of beeing in that interval
  *
  * The purpose is to have a toolkit for error propagation calculations
- * Might be usefull for people who perform accredited testing, and need to proofe accuracy.
+ * Might be usefull for people who perform accredited testing, and need to proove accuracy.
  * 
  * all definitions are inline, so that they can "legally" recide in a header file only
  * this simplifies compilation, as no corresponding c++ file needs to be defined
