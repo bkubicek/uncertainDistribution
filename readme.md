@@ -27,7 +27,7 @@ distribution of complex systems:
         the bias_error might be normal distributed, while
         the other things are individually rectangular distributed
             
-##Technicals
+## Technicals
 One could do all that using monte carlo sampling and be done.
 However it would be slow.
 Instead a single distribution is defined by two equally sized arrays
@@ -35,7 +35,7 @@ the first one, "centers", is the value of the bin center of the observable, e.g.
 the second one, "weights", is the likelyhood that the corresponding interval 
  would be hit when measuring the random stick with a perfect device.
  
-For rect and tri distributions, the centers are naturally limited
+For rect and tri distributions, the centers boundaries are naturally limited.
 For a normal distribution one has to choose how much of the tails are resolved
 
 when adding/multiplying/dividing two distributions, all combination of centers are looked at
@@ -46,7 +46,7 @@ The Class uses operator overloading, so that + * / with a distributino/scalar ar
 Core functionally is written in c++ for optimization and automatically wrapped to python from "bkUncDist.hpp" using cppyy "https://cppyy.readthedocs.io/en/latest/"
 
 
-##Usage:
+## Usage:
 One can define example distributions:
 ```
 from uncertainDistribution import unDist as undi
